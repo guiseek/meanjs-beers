@@ -1,8 +1,8 @@
 'use strict';
 
 // Breweries controller
-angular.module('breweries').controller('BreweriesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Breweries',
-	function($scope, $stateParams, $location, Authentication, Breweries) {
+angular.module('breweries').controller('BreweriesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Breweries', 'Beers',
+	function($scope, $stateParams, $location, Authentication, Breweries, Beers) {
 		$scope.authentication = Authentication;
 
 		// Create new Brewery
@@ -25,18 +25,20 @@ angular.module('breweries').controller('BreweriesController', ['$scope', '$state
 
 		// Remove existing Brewery
 		$scope.remove = function(brewery) {
-			if ( brewery ) { 
-				brewery.$remove();
+			if (confirm('Tem certeza?')) {
+				if ( brewery ) { 
+					brewery.$remove();
 
-				for (var i in $scope.breweries) {
-					if ($scope.breweries [i] === brewery) {
-						$scope.breweries.splice(i, 1);
+					for (var i in $scope.breweries) {
+						if ($scope.breweries [i] === brewery) {
+							$scope.breweries.splice(i, 1);
+						}
 					}
+				} else {
+					$scope.brewery.$remove(function() {
+						$location.path('breweries');
+					});
 				}
-			} else {
-				$scope.brewery.$remove(function() {
-					$location.path('breweries');
-				});
 			}
 		};
 

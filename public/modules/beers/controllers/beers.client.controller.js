@@ -12,6 +12,7 @@ angular.module('beers').controller('BeersController', ['$scope', '$stateParams',
 			// Create new Beer object
 			var beer = new Beers ({
 				name: this.beer.name,
+				style: this.beer.style,
 				brewery: this.beer.brewery._id
 			});
 
@@ -20,7 +21,7 @@ angular.module('beers').controller('BeersController', ['$scope', '$stateParams',
 				$location.path('beers/' + response._id);
 
 				// Clear form fields
-				$scope.name = '';
+				$scope.beer = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
@@ -28,18 +29,20 @@ angular.module('beers').controller('BeersController', ['$scope', '$stateParams',
 
 		// Remove existing Beer
 		$scope.remove = function(beer) {
-			if ( beer ) { 
-				beer.$remove();
+			if (confirm('Tem certeza?')) {
+				if ( beer ) { 
+					beer.$remove();
 
-				for (var i in $scope.beers) {
-					if ($scope.beers [i] === beer) {
-						$scope.beers.splice(i, 1);
+					for (var i in $scope.beers) {
+						if ($scope.beers [i] === beer) {
+							$scope.beers.splice(i, 1);
+						}
 					}
+				} else {
+					$scope.beer.$remove(function() {
+						$location.path('beers');
+					});
 				}
-			} else {
-				$scope.beer.$remove(function() {
-					$location.path('beers');
-				});
 			}
 		};
 

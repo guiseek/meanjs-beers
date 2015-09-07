@@ -11,7 +11,8 @@
 				<span data-ng-bind="beer.user.displayName"></span>
 			</small>
 			<h4 class="list-group-item-heading">Cerveja: <span data-ng-bind="beer.name"></span></h4>
-            <h5 class="list-group-item-heading">Cervejaria: <span data-ng-bind="beer.brewery.name"></span></h5>
+            <h5 class="list-group-item-heading">Estilo: <span data-ng-bind="beer.style"></span></h5>
+            <h6 class="list-group-item-heading">Cervejaria: <span data-ng-bind="beer.brewery.name"></span></h6>
         </a>
     </div>
     <div class="alert alert-warning text-center" data-ng-hide="!beers.$resolved || beers.length">

@@ -16,6 +16,12 @@ var BeerSchema = new Schema({
 		required: 'Please fill Beer name',
 		trim: true
 	},
+	style: {
+		type: String,
+		default: '',
+		required: 'Please fill Beer style',
+		trim: true
+	},
 	created: {
 		type: Date,
 		default: Date.now

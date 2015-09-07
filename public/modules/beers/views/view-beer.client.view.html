@@ -1,7 +1,8 @@
 <section data-ng-controller="BeersController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1>Cerveja: <span data-ng-bind="beer.name"></span></h1>
-		<h2>Cervejaria: <span data-ng-bind="beer.brewery.name"></span></h2>
+		<h2>Estilo: <span data-ng-bind="beer.style"></span></h2>
+		<h3>Cervejaria: <span data-ng-bind="beer.brewery.name"></span></h3>
 	</div>
 	<div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == beer.user._id))">
 		<a class="btn btn-primary" href="/#!/beers/{{beer._id}}/edit">
